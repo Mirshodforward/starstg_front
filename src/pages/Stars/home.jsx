@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import starsGif from "../../assets/stars.gif";
 
 import { useNavigate } from "react-router-dom";
 import "./home.css";
@@ -227,7 +227,7 @@ const handlePayment = async () => {
   return (
     <div className="home-container">
       <img
-        src="../src/assets/stars.gif"
+        src={starsGif}
         alt="stars"
         className="plan-gif"
       />

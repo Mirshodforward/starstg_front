@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Premium.css";
-
+import diamondGif from "../../assets/diamond.gif";
+import premiumGif from "../../assets/premium_gif.gif";
 export default function Premium() {
   const navigate = useNavigate();
   const PREMIUM_3 = parseInt(import.meta.env.VITE_PREMIUM_3);
@@ -225,7 +226,7 @@ export default function Premium() {
   return (
     <div className="premium-container">
 
-      <img src="../src/assets/diamond.gif" alt="premium" className="plan-gif" />
+      <img src={diamondGif} alt="premium" className="plan-gif" />
       <h2>Premium Fast Bot</h2>
 
       {/* SEARCH */}
@@ -263,7 +264,7 @@ export default function Premium() {
               onChange={() => setSelectedPlan(p)}
             />
 
-            <img src="../src/assets/premium_gif.gif" className="plan-gif" />
+            <img src={premiumGif} className="plan-gif" />
 
             <div className="narx">
               <span>{p.label}</span>

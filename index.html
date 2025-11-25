@@ -8,32 +8,28 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <title>Premium Faster</title>
+    <title>Stars Paymee</title>
     <script>
-      (function () {
-        try {
-          var tg = window.Telegram && window.Telegram.WebApp;
-          if (!tg) return;
-          var tp = tg.themeParams || {};
-          var root = document.documentElement;
-          var map = {
-            bg_color: "--bg",
-            text_color: "--fg",
-            hint_color: "--muted",
-            link_color: "--primary",
-            button_color: "--primary",
-            button_text_color: "--on-primary",
-            secondary_bg_color: "--card"
-          };
-          for (var k in map) {
-            if (tp[k]) root.style.setProperty(map[k], tp[k]);
-          }
-          tg.expand && tg.expand();
-        } catch (e) {
-          // ignore
-        }
-      })();
-    </script>
+  (function () {
+    try {
+      const tg = window.Telegram?.WebApp;
+      if (!tg) return;
+
+      tg.ready(); // Mini App tayyor ekanini bildiradi
+
+      // User maʼlumotlari
+      const user = tg.initDataUnsafe?.user || null;
+
+      if (user) {
+        console.log("User ID:", user.id);
+        console.log("Full user:", user);
+      }
+    } catch (e) {
+      console.error("Telegram Mini App error:", e);
+    }
+  })();
+</script>
+
   </head>
   <body>
     <div id="root"></div>
