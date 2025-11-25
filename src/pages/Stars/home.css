@@ -1,0 +1,352 @@
+/* =============================== */
+/* GLOBAL CONTAINER */
+/* =============================== */
+
+.home-container {
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 16px;
+  font-family: "Inter", sans-serif;
+  color: #1a1a1a;
+}
+
+h1 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+p {
+  font-size: 14px;
+  color: #555;
+}
+
+
+/* =============================== */
+/* PROFILE SMALL PREVIEW */
+/* =============================== */
+
+.profile-preview-small {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  padding: 10px 14px;
+  border-radius: 12px;
+  margin-top: 10px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+}
+
+.profile-img-small {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.profile-info .name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.profile-info .username {
+  font-size: 12px;
+  color: #888;
+}
+
+
+/* =============================== */
+/* INPUT FORM */
+/* =============================== */
+
+.form-card {
+  background: #fff;
+  border-radius: 14px;
+  margin-top: 20px;
+  padding: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tg-input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  color:#1a1a1a;
+  border: 1px solid #eed4d4;
+  background: #e8e7e7;
+  font-size: 14px;
+  transition: all 0.15s ease;
+}
+
+.tg-input:focus {
+  border-color: #0088cc;
+  background: #fff;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0,136,204,0.15);
+}
+
+.price-text {
+  margin-top: 4px;
+  font-size: 14px;
+  color: #444;
+}
+
+
+/* =============================== */
+/* BUTTON */
+/* =============================== */
+
+.tg-button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 14px;
+  background: #0088cc;
+  color: #fff;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.tg-button:hover {
+  background: #0077b5;
+}
+
+.tg-button.ghost {
+  background: #f2f2f2;
+  color: #333;
+  margin-top: 20px;
+}
+
+
+/* =============================== */
+/* SEARCH LOADING */
+/* =============================== */
+
+.loader-search {
+  margin: 16px auto;
+  position: relative;
+}
+
+.loader-mini {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(0,0,0,0.1);
+  border-top-color: #0088cc;
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: spinMini 0.7s linear infinite;
+}
+
+@keyframes spinMini {
+  to { transform: rotate(360deg); }
+}
+
+
+/* =============================== */
+/* MODAL */
+/* =============================== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px;
+  z-index: 200;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  animation: modalPop 0.25s ease-out;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+@keyframes modalPop {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+
+/* =============================== */
+/* PROFILE IN MODAL */
+/* =============================== */
+
+.profile-preview-modal {
+  text-align: center;
+}
+
+.profile-img-modal {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  margin: 8px auto;
+}
+
+.profile-preview-modal .name {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.profile-preview-modal .username {
+  font-size: 13px;
+  color: #777;
+}
+
+
+/* =============================== */
+/* PAYMENT DETAILS */
+/* =============================== */
+
+.inline-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fafafa;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #ececec;
+  margin-top: 10px;
+}
+
+.label {
+  font-size: 13px;
+  color: #777;
+}
+
+.value {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.btn-copy {
+  padding: 6px 10px;
+  background: #e8f5ff;
+  color: #0088cc;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.hint {
+  margin-top: 8px;
+  color: #d9534f;
+  font-size: 13px;
+}
+
+
+/* =============================== */
+/* PENDING LOADER */
+/* =============================== */
+
+.loader-arc {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #e1e1e1;
+  border-top-color: #0088cc;
+  border-radius: 50%;
+  margin: 18px auto;
+  animation: spinArc 0.8s linear infinite;
+}
+
+@keyframes spinArc {
+  to { transform: rotate(360deg); }
+}
+
+
+/* =============================== */
+/* COMPLETED LOADER */
+/* =============================== */
+
+.loader-orbit {
+  width: 40px;
+  height: 40px;
+  border: 3px dashed #0088cc;
+  border-radius: 50%;
+  margin: 16px auto;
+  animation: orbit 1s linear infinite;
+}
+
+@keyframes orbit {
+  to { transform: rotate(360deg); }
+}
+
+
+/* =============================== */
+/* STARS SENT */
+/* =============================== */
+
+.success-text {
+  margin: 10px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2ecc71;
+}
+
+.txid-chip {
+  margin-top: 10px;
+  padding: 10px;
+  background: #eef7ff;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+/* =============================== */
+/* NAVIGATION */
+/* =============================== */
+
+.btn-container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 430px;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  background: #ffffff;
+  border-top: 1px solid #e0e0e0;
+}
+
+.btn-nav {
+  padding: 10px 20px;
+  border-radius: 12px;
+  background: #f2f2f2;
+  border: none;
+  font-size: 14px;
+}
+
+
+/* =============================== */
+/* RESPONSIVE */
+/* =============================== */
+
+@media (max-width: 380px) {
+  .tg-input {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .form-card {
+    padding: 14px;
+  }
+
+  .modal-content {
+    padding: 16px;
+  }
+}
