@@ -45,7 +45,8 @@ const NARX = parseInt(import.meta.env.VITE_NARX);
 
   // Backend status
   useEffect(() => {
-    fetch("http://localhost:5000/api/status")
+    //fetch("http://localhost:5000/api/status")
+    fetch("/api/status")
       .then(res => res.json())
       .then(data => setBackendStatus(data.message))
       .catch(() => setBackendStatus("Backend offline ❌"));
@@ -88,7 +89,8 @@ const NARX = parseInt(import.meta.env.VITE_NARX);
           ? username.slice(1)
           : username;
 
-        const profileRes = await fetch("http://localhost:5000/api/search", {
+        //const profileRes = await fetch("http://localhost:5000/api/search", {
+        const profileRes = await fetch("/api/search", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username: cleanUsername }),
@@ -145,7 +147,8 @@ const NARX = parseInt(import.meta.env.VITE_NARX);
     const interval = setInterval(async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/transactions/${createdOrder.id}`
+          //`http://localhost:5000/api/transactions/${createdOrder.id}`
+          `/api/transactions/${createdOrder.id}`
         );
         const data = await res.json();
 
@@ -187,7 +190,8 @@ const handlePayment = async () => {
   }
 
     try {
-      const res = await fetch("http://localhost:5000/api/order", {
+      //const res = await fetch("http://localhost:5000/api/order", {
+      const res = await fetch("/api/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

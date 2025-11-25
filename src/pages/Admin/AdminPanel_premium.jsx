@@ -3,13 +3,19 @@ import "./AdminPremium.css"; // oddiy CSS
 
 const BASE = "http://localhost:5000";
 
-const API = {
-  list: BASE + "/api/admin/premium/list",
-  get: (id) => BASE + `/api/admin/premium/get/${id}`,
-  update: (id) => BASE + `/api/admin/premium/update/${id}`,
-  resend: (id) => BASE + `/api/admin/premium/resend/${id}`,
-};
+// const API = {
+//   list: BASE + "/api/admin/premium/list",
+//   get: (id) => BASE + `/api/admin/premium/get/${id}`,
+//   update: (id) => BASE + `/api/admin/premium/update/${id}`,
+//   resend: (id) => BASE + `/api/admin/premium/resend/${id}`,
+// };
 
+const API = {
+  list: "/api/admin/premium/list",
+  get: (id) => `/api/admin/premium/get/${id}`,
+  update: (id) => `/api/admin/premium/update/${id}`,
+  resend: (id) => `/api/admin/premium/resend/${id}`,
+};
 
 export default function PremiumAdminPanel() {
   const [orders, setOrders] = useState([]);

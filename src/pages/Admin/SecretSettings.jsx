@@ -47,7 +47,7 @@ export default function SecretSettings() {
   // 2) LOAD SECRET DATA
   // ============================
   useEffect(() => {
-    fetch(`${API_URL}/api/admin/secret`)
+    fetch(`/api/admin/secret`)
       .then(async (res) => {
         const data = await res.json();
         setForm(data.data);
@@ -66,7 +66,7 @@ export default function SecretSettings() {
   const save = async () => {
     setSaving(true);
     try {
-      const res = await fetch(`${API_URL}/api/admin/secret/update`, {
+      const res = await fetch(`/api/admin/secret/update`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

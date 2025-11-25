@@ -19,9 +19,9 @@ export default function AdminPanel() {
   const fetchTransactions = async () => {
     setLoading(true);
     try {
-      let url = "http://localhost:5000/api/transactions/all";
+      let url = "/api/transactions/all";
       if (filter !== "all") {
-        url = `http://localhost:5000/api/transactions/status/${filter}`;
+        url = `/api/transactions/status/${filter}`;
       }
 
       const res = await fetch(url);
@@ -60,7 +60,7 @@ export default function AdminPanel() {
   const updateStatus = async (id, newStatus) => {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/transactions/update/${id}`,
+        `/api/transactions/update/${id}`,
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },

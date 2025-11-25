@@ -56,7 +56,8 @@ export default function Premium() {
 
         const clean = username.replace("@", "");
 
-        const res = await fetch("http://localhost:5000/api/premium/search", {
+        //const res = await fetch("http://localhost:5000/api/premium/search", {
+        const res = await fetch("/api/premium/search", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -105,7 +106,8 @@ export default function Premium() {
     setLoadingBuy(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/premium", {
+      //const res = await fetch("http://localhost:5000/api/premium", {
+      const res = await fetch("/api/premium", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -144,7 +146,8 @@ export default function Premium() {
     stopPolling();
     pollingRef.current = setInterval(async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/premium/transactions/${id}`);
+        //const res = await fetch(`http://localhost:5000/api/premium/transactions/${id}`);
+        const res = await fetch(`/api/premium/transactions/${id}`);
         const data = await res.json();
 
         if (!res.ok) return;
