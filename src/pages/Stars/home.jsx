@@ -381,11 +381,7 @@ const handlePayment = async () => {
         </div>
       )}
 
-      {/* Navigation */}
-      <div className="btn-container">
-        <button className="btn-nav" onClick={goToHome}>Stars</button>
-        <button className="btn-nav" onClick={goToPremium}>Premium</button>
-      </div>
+  
 
 
     </div>

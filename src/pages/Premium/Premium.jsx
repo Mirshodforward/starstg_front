@@ -344,11 +344,7 @@ export default function Premium() {
         </div>
       )}
    
-      {/* NAVIGATION */}
-      <div className="btn-container">
-        <button className="btn-nav" onClick={() => navigate("/")}>Stars</button>
-        <button className="btn-nav" onClick={() => navigate("/premium")}>Premium</button>
-      </div>
+  
 
     </div>
   );
