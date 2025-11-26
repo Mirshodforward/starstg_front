@@ -9,27 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <title>Stars Paymee</title>
-    <script>
-  (function () {
-    try {
-      const tg = window.Telegram?.WebApp;
-      if (!tg) return;
-
-      tg.ready(); // Mini App tayyor ekanini bildiradi
-
-      // User maʼlumotlari
-      const user = tg.initDataUnsafe?.user || null;
-
-      if (user) {
-        console.log("User ID:", user.id);
-        console.log("Full user:", user);
-      }
-    } catch (e) {
-      console.error("Telegram Mini App error:", e);
-    }
-  })();
-</script>
-
+    
   </head>
   <body>
     <div id="root"></div>
