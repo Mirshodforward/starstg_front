@@ -6,6 +6,7 @@ import PremiumSuccess from "./pages/Premium/log/PremiumSuccess";
 import PremiumError from "./pages/Premium/log/PremiumError";
 import PremiumAdminPanel from "./pages/Admin/AdminPanel_premium";
 import SecretSettings from "./pages/Admin/SecretSettings";
+import Dashboard from "./pages/Homepage/Dashboard";
 
 
 
@@ -15,7 +16,8 @@ function App() {
     <BrowserRouter>
       
       <Routes>
-        <Route path="/" element={<Home />} />
+         <Route path="/" element={<Dashboard/>} />
+        <Route path="/stars" element={<Home />} />
         <Route path="/premium" element={<Premium />} />
          <Route path="/starsadmin" element={<AdminPanel/>} />
          <Route path="/premium/success" element={<PremiumSuccess />} />
