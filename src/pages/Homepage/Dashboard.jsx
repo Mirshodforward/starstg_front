@@ -75,8 +75,8 @@ export default function Dashboard() {
         setLoading(true);
         setError(null);
 
-        const starsRes = await fetch("http://localhost:5001/api/transactions/all");
-        const premRes = await fetch("http://localhost:5001/api/admin/premium/list?status=all");
+        const starsRes = await fetch("/api/transactions/all");
+        const premRes = await fetch("/api/admin/premium/list?status=all");
 
         const allStars = await starsRes.json();
         const premJson = await premRes.json();
