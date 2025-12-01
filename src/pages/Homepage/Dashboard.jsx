@@ -7,8 +7,9 @@ import "./dashboard.css";
 import starsGif from "../../assets/stars.gif";
 import premiumGif from "../../assets/premium_gif.gif";
 
-const GOAL = 500000;
+const GOAL = 999999;
 
+// Formatlash
 const formatAmount = (num) =>
   num?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 
@@ -18,46 +19,31 @@ export default function Dashboard() {
   const [username, setUsername] = useState(null);
   const [isTelegram, setIsTelegram] = useState(false);
 
-  const [combinedTxs, setCombinedTxs] = useState([]);
+  const [txs, setTxs] = useState([]);
   const [totalSum, setTotalSum] = useState(0);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   /* ============================================================
-      1) TELEGRAM USER DETECT
+      1) TELEGRAMDAN USERNAME ANIQLASH
   ============================================================ */
   useEffect(() => {
     try {
-      if (WebApp?.ready) {
-        WebApp.ready();
+      WebApp.ready();
 
-        const tgUser =
-          WebApp.initDataUnsafe?.user?.username ||
-          WebApp.initData?.user?.username;
+      const tgUser =
+        WebApp?.initDataUnsafe?.user?.username ||
+        window?.Telegram?.WebApp?.initDataUnsafe?.user?.username;
 
-        if (tgUser) {
-          setIsTelegram(true);
-          setUsername(tgUser);
-          return;
-        }
-      }
-
-      // Fallback: window.Telegram API
-      const wUser =
-        window?.Telegram?.WebApp?.initDataUnsafe?.user?.username ||
-        window?.Telegram?.WebApp?.initData?.user?.username;
-
-      if (wUser) {
+      if (tgUser) {
         setIsTelegram(true);
-        setUsername(wUser);
-        return;
+        setUsername(tgUser);
+      } else {
+        // Telegram emas → tarixni ko‘rsatilmaydi
+        setIsTelegram(false);
+        setUsername(null);
       }
-
-      // Not Telegram → no history
-      setIsTelegram(false);
-      setUsername(null);
-
     } catch (err) {
       setIsTelegram(false);
       setUsername(null);
@@ -65,24 +51,30 @@ export default function Dashboard() {
   }, []);
 
   /* ============================================================
-      2) FETCH TRANSACTIONS ONLY IF TELEGRAM USER FOUND
+      2) USER TRANSAKSIYALARINI O‘QISH
   ============================================================ */
   useEffect(() => {
     if (!isTelegram || !username) return;
 
-    const fetchTxs = async () => {
+    const loadTxs = async () => {
       try {
         setLoading(true);
         setError(null);
 
-        const starsRes = await fetch("/api/transactions/all");
-        const premRes = await fetch("/api/admin/premium/list?status=all");
+        const clean = username.startsWith("@")
+          ? username.slice(1)
+          : username;
+
+        const starsRes = await fetch(
+          `/api/transactions/all`
+        );
+        const premRes = await fetch(
+          `/api/admin/premium/list?status=all`
+        );
 
         const allStars = await starsRes.json();
         const premJson = await premRes.json();
         const allPremium = premJson.orders || [];
-
-        const clean = username.startsWith("@") ? username.slice(1) : username;
 
         const userStars = allStars.filter(
           (t) => (t.username || "").toLowerCase() === clean.toLowerCase()
@@ -97,135 +89,142 @@ export default function Dashboard() {
           ...userPremium.map((t) => ({ ...t, kind: "premium" })),
         ].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
-        setCombinedTxs(combined);
+        setTxs(combined);
 
-        const sum = combined.reduce((s, t) => s + (Number(t.amount) || 0), 0);
+        // Sum stars_sent + premium_sent
+        const sum = combined
+          .filter((t) =>
+            ["stars_sent", "premium_sent"].includes(t.status)
+          )
+          .reduce((s, t) => s + Number(t.amount || 0), 0);
+
         setTotalSum(sum);
-
-      } catch (err) {
+      } catch (e) {
         setError("Serverdan ma'lumot olishda xato");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchTxs();
+    loadTxs();
   }, [isTelegram, username]);
 
-
-  /* ============================================================
-      UI RENDER
-  ============================================================ */
-
-  const progressPercent = Math.min(100, Math.round((totalSum / GOAL) * 100));
+  const percent = Math.min(100, Math.round((totalSum / GOAL) * 100));
 
   return (
-    <div className="dashboard-root">
-      <header className="dash-header">
-        <h1>StarsPaymee — Dashboard</h1>
+    <div className="dashboard-root_dashboard">
+
+      {/* HEADER */}
+      <header className="dash-header_dashboard">
+        <h1>Premium Fast — Dashboard</h1>
       </header>
 
-      <div className="top-actions">
-        <div className="card action-card" onClick={() => navigate("/stars")}>
-          <div className="card-icon">
-            <img src={starsGif} alt="stars" className="plan-gif" />
+      {/* ACTION BUTTONS */}
+      <div className="top-actions_dashboard">
+        <div className="card action-card_dashboard" onClick={() => navigate("/stars")}>
+          <div className="card-icon_dashboard">
+            <img src={starsGif} className="plan-gif_dashboard" />
           </div>
-          <div className="card-body">
-            <div className="card-title">Stars olish</div>
-            <div className="card-sub">Stars sahifasiga o'tish</div>
+          <div className="card-body_dashboard">
+            <div className="card-title_dashboard">Stars olish</div>
           </div>
         </div>
 
-        <div className="card action-card" onClick={() => navigate("/premium")}>
-          <div className="card-icon">
-            <img src={premiumGif} className="plan-gif" />
+        <div className="card action-card_dashboard" onClick={() => navigate("/premium")}>
+          <div className="card-icon_dashboard">
+            <img src={premiumGif} className="plan-gif_dashboard" />
           </div>
-          <div className="card-body">
-            <div className="card-title">Premium olish</div>
-            <div className="card-sub">Premium sahifasiga o'tish</div>
+          <div className="card-body_dashboard">
+            <div className="card-title_dashboard">Premium olish</div>
           </div>
         </div>
       </div>
 
-      <main className="dash-main">
-        <section className="challenge-card card">
-          <div className="challenge-header">
+      <main className="dash-main_dashboard">
+
+        {/* GOAL SECTION */}
+        <section className="challenge-card-card_dashboard">
+          <div className="challenge-header_dashboard">
             <div>
               <h3>Umumiy savdo maqsadi</h3>
-              <p className="goal-sub">500 000 so'mga yetganda NFT sovg‘a!</p>
+              <p className="goal-sub_dashboard">999 999 so‘m — NFT sovg‘a!</p>
             </div>
-            <div className="goal-values">
-              <div className="current">{formatAmount(totalSum)} so'm</div>
-              <div className="goal">{formatAmount(GOAL)} so'm</div>
+
+            <div className="goal-values_dashboard">
+              <div className="current_dashboard">{formatAmount(totalSum)} so'm</div>
+              <div className="goal_dashboard">{formatAmount(GOAL)} so'm</div>
             </div>
           </div>
 
-          <div className="progress-bar">
+          <div className="progress-bar_dashboard">
             <div
-              className="progress-fill"
-              style={{ width: `${progressPercent}%` }}
-            />
+              className="progress-fill_dashboard"
+              style={{ width: `${percent}%` }}
+            ></div>
           </div>
 
-          <div className="progress-meta">
-            <span>{progressPercent}%</span>
+          <div className="progress-meta_dashboard">
+            <span>{percent}%</span>
           </div>
         </section>
 
-        <section className="history-card card">
-          <div className="history-header">
-            <h3>Tarix {username ? `(@${username})` : ""}</h3>
+        {/* TRANSACTION HISTORY */}
+        <section className="history-card-card_dashboard">
+          <div className="history-header_dashboard">
+            <h3>Tarix @{username}</h3>
+
+            {!isTelegram && (
+              <small className="muted_dashboard">
+                Tarix faqat Telegram Mini-App orqali ishlaydi
+              </small>
+            )}
           </div>
 
-          {/* Browser rejimi */}
           {!isTelegram && (
-            <div className="no-history">
-              <p>Tarix faqat Telegram Mini-App orqali mavjud.</p>
+            <div className="no-history_dashboard">
+              <p>Mini-App orqali kirishingiz kerak.</p>
             </div>
           )}
 
-          {/* Loading */}
-          {loading && <p>Yuklanmoqda...</p>}
+          {isTelegram && loading && <p>Yuklanmoqda...</p>}
+          {isTelegram && error && <p className="error_dashboard">{error}</p>}
 
-          {/* Errors */}
-          {error && <p className="error">{error}</p>}
-
-          {/* Telegramda, username bor, lekin tranzaksiyalar yo‘q */}
-          {isTelegram && !loading && combinedTxs.length === 0 && (
-            <div className="no-history">
+          {isTelegram && !loading && txs.length === 0 && (
+            <div className="no-history_dashboard">
               <p>Tranzaksiyalar topilmadi.</p>
             </div>
           )}
 
-          {/* Transaction LIST */}
-          {isTelegram && combinedTxs.length > 0 && (
-            <ul className="tx-list">
-              {combinedTxs.map((t) => (
-                <li key={`${t.kind}-${t.id}`} className="tx-item">
-                  <div className="tx-left">
-                    <div className={`tx-badge ${t.kind}`}>
+          {isTelegram && txs.length > 0 && (
+            <ul className="tx-list_dashboard">
+              {txs.map((t) => (
+                <li key={`${t.kind}-${t.id}`} className="tx-item_dashboard">
+                  <div className="tx-left_dashboard">
+                    <div className={`tx-badge_dashboard ${t.kind}`}>
                       {t.kind === "stars" ? "⭐" : "💎"}
                     </div>
                   </div>
 
-                  <div className="tx-main">
-                    <div className="tx-top">
-                      <div className="tx-username">@{t.username}</div>
-                      <div className="tx-amount">
+                  <div className="tx-main_dashboard">
+                    <div className="tx-top_dashboard">
+                      <div className="tx-username_dashboard">@{t.username}</div>
+                      <div className="tx-amount_dashboard">
                         {formatAmount(t.amount)} so'm
                       </div>
                     </div>
 
-                    <div className="tx-bottom">
-                      <div className="tx-meta">
-                        {t.stars ? `${t.stars} stars` : ""}
+                    <div className="tx-bottom_dashboard">
+                      <div className="tx-meta_dashboard">
+                        {t.stars ? `${t.stars}⭐` : ""}
                         {t.muddat_oy ? ` • ${t.muddat_oy} oy` : ""}
-                        {t.transaction_id ? ` • TX: ${t.transaction_id}` : ""}
                       </div>
 
-                      <div className={`tx-status ${t.status}`}>{t.status}</div>
+                      {/* STATUS ranglari */}
+                      <div className={`tx-status badge_dashboard-${t.status}`}>
+                        {t.status}
+                      </div>
 
-                      <div className="tx-date">
+                      <div className="tx-date_dashboard">
                         {new Date(t.created_at).toLocaleString()}
                       </div>
                     </div>

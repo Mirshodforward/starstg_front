@@ -1,320 +1,264 @@
-/* ==========================================================
-   GLOBAL PAGE
-========================================================== */
-.dashboard-root {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 18px;
-  font-family: "Inter", system-ui, sans-serif;
-  background: #f5f7fb;
+/* ===============================
+      ROOT STYLES
+=============================== */
+.dashboard-root_dashboard {
+  font-family: "Inter", sans-serif;
+  padding: 16px;
+  background: #f4f5f7;
   min-height: 100vh;
   color: #1a1a1a;
 }
 
-.dash-header h1 {
-  font-size: 26px;
-  font-weight: 700;
-  margin-bottom: 22px;
-  color: #0d1b2a;
+/* ===============================
+      HEADER
+=============================== */
+.dash-header_dashboard {
+  text-align: center;
+  margin-bottom: 18px;
 }
 
-
-
-/* ==========================================================
-   TOP ACTION CARDS — BIG BEAUTIFUL BLOCKS
-========================================================== */
-.top-actions {
-  display: flex;
-  gap: 22px;
-  margin-bottom: 28px;
-}
-
-.action-card {
-  flex: 1;
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 26px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  cursor: pointer;
-  transition: 0.25s ease;
-  box-shadow: 0px 10px 22px rgba(0,0,0,0.06);
-  border: 1px solid #eef1f6;
-}
-
-.action-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 32px rgba(0,0,0,0.10);
-}
-
-.card-icon {
-  width: 78px;
-  height: 78px;
-  background: #eef4ff;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card-icon img {
-  width: 62px;
-  height: 62px;
-}
-
-.card-title {
+.dash-header_dashboard h1 {
   font-size: 20px;
   font-weight: 700;
-  color: #0d1b2a;
+  color: #222;
 }
 
-.card-sub {
-  font-size: 14px;
-  color: #66778d;
+/* ===============================
+      TOP ACTION BUTTONS
+=============================== */
+.top-actions_dashboard {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
 }
 
-
-
-/* ==========================================================
-   SECTIONS → BEAUTIFUL WHITE CARDS
-========================================================== */
-.card {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 20px;
-  margin-bottom: 24px;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.05);
-  border: 1px solid #eceff4;
+.action-card_dashboard {
+  flex: 1;
+  background: white;
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
 }
 
+.action-card_dashboard:hover {
+  transform: translateY(-3px);
+}
 
+.card-icon_dashboard img {
+  width: 50px;
+  height: 50px;
+}
 
-/* ==========================================================
-   PROGRESS / CHALLENGE
-========================================================== */
-.challenge-header {
+.card-title_dashboard {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/* ===============================
+      GOAL CARD
+=============================== */
+.challenge-card-card_dashboard {
+  background: white;
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.challenge-header_dashboard {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.goal-sub_dashboard {
+  font-size: 13px;
+  color: #777;
+}
+
+.goal-values_dashboard {
+  text-align: right;
+}
+
+.current_dashboard {
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.goal_dashboard {
+  color: #888;
+  font-size: 14px;
+}
+
+/* ===============================
+      PROGRESS BAR
+=============================== */
+.progress-bar_dashboard {
+  width: 100%;
+  height: 12px;
+  margin: 10px 0;
+  background: #e9e9e9;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-fill_dashboard {
+  background: linear-gradient(90deg, #4caf50, #2ecc71);
+  height: 100%;
+  transition: width 0.4s ease;
+}
+
+.progress-meta_dashboard {
+  text-align: center;
+  font-weight: 600;
+  color: #555;
+}
+
+/* ===============================
+      HISTORY
+=============================== */
+.history-card-card_dashboard {
+  background: white;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.history-header_dashboard {
   margin-bottom: 14px;
 }
 
-.challenge-header h3 {
+.history-header_dashboard h3 {
   font-size: 18px;
   font-weight: 700;
-  color: #0d1b2a;
 }
 
-.goal-sub {
-  font-size: 14px;
-  color: #748a9d;
-  margin-top: 4px;
-}
-
-.goal-values {
-  text-align: right;
-}
-
-.current {
-  font-size: 20px;
-  font-weight: 700;
-  color: #183153;
-}
-
-.goal {
-  font-size: 13px;
-  color: #8898a6;
-}
-
-.progress-bar {
-  height: 14px;
-  background: #e8edf5;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-top: 10px;
-}
-
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #3bd1a9, #6ceaff);
-  border-radius: 10px;
-}
-
-.progress-meta {
-  text-align: right;
-  margin-top: 8px;
-  font-size: 14px;
-  color: #5d6f7c;
-}
-
-
-
-/* ==========================================================
-   HISTORY HEADER
-========================================================== */
-.history-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-
-.history-header h3 {
-  font-size: 18px;
-  font-weight: 700;
-  color: #0d1b2a;
-}
-
-.muted {
-  font-size: 13px;
-  color: #7d8ea1;
-}
-
-.no-history {
-  padding: 16px;
+.no-history_dashboard {
   text-align: center;
-  color: #7e8fa1;
+  padding: 25px 0;
+  color: #777;
+  font-size: 15px;
 }
 
+.error_dashboard {
+  color: red;
+  font-size: 14px;
+}
 
-
-/* ==========================================================
-   TRANSACTION LIST
-========================================================== */
-.tx-list {
+/* ===============================
+      TX LIST
+=============================== */
+.tx-list_dashboard {
   list-style: none;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  margin: 0;
 }
 
-.tx-item {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 16px;
+.tx-item_dashboard {
   display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  border: 1px solid #e7eaf0;
-  box-shadow: 0 3px 14px rgba(0,0,0,0.05);
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
 }
 
-
-
-/* ==========================================================
-   LEFT BADGE (ICON BOX)
-========================================================== */
-.tx-badge {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
+.tx-left_dashboard {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 26px;
 }
 
-/* Stars → Yellow box */
-.tx-badge.stars {
-  background: rgba(255, 215, 0, 0.22);
+.tx-badge_dashboard {
+  font-size: 22px;
 }
 
-/* Premium → Blue box */
-.tx-badge.premium {
-  background: rgba(0, 123, 255, 0.18);
-}
-
-
-
-/* ==========================================================
-   MAIN CONTENT
-========================================================== */
-.tx-main {
+.tx-main_dashboard {
   flex: 1;
 }
 
-.tx-top {
+.tx-top_dashboard {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  margin-bottom: 4px;
 }
 
-.tx-username {
+.tx-username_dashboard {
   font-size: 15px;
   font-weight: 600;
-  color: #183153;
 }
 
-.tx-amount {
-  font-size: 16px;
+.tx-amount_dashboard {
+  font-size: 15px;
   font-weight: 700;
-  color: #0d1b2a;
 }
 
-.tx-bottom {
-  margin-top: 8px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+.tx-meta_dashboard {
+  color: #555;
   font-size: 13px;
-  color: #637588;
 }
 
+/* STATUS BADGE COLORS */
+.badge_dashboard-stars_sent,
+.badge_dashboard-premium_sent {
+  background: #4caf50;
+  color: white;
+}
 
+.badge_dashboard-pending {
+  background: #f1c40f;
+  color: #222;
+}
 
-/* ==========================================================
-   STATUS — PREMIUM TAG STYLE
-========================================================== */
+.badge_dashboard-failed,
+.badge_dashboard-error {
+  background: #e74c3c;
+  color: white;
+}
+
 .tx-status {
-  padding: 4px 10px;
-  border-radius: 8px;
+  display: inline-block;
+  padding: 4px 8px;
   font-size: 12px;
+  margin-top: 4px;
+  border-radius: 6px;
+  text-transform: uppercase;
   font-weight: 600;
-  text-transform: capitalize;
 }
 
-/* Completed / Sent */
-.tx-status.completed,
-.tx-status.success,
-.tx-status.done {
-  background: #e6f8ef;
-  color: #29b765;
-  border: 1px solid #c7eed9;
-}
-
-/* Pending */
-.tx-status.pending {
-  background: #fff6d8;
-  color: #c19701;
-  border: 1px solid #f2dc8f;
-}
-
-/* Error or Failed */
-.tx-status.error,
-.tx-status.failed,
-.tx-status.expired {
-  background: #ffe7e7;
-  color: #dd4040;
-  border: 1px solid #f3b2b2;
-}
-
-.tx-date {
+/* ===============================
+      DATE
+=============================== */
+.tx-date_dashboard {
   font-size: 12px;
-  color: #9aa7b5;
+  color: #777;
+  margin-top: 4px;
 }
 
-
-
-/* ==========================================================
-   RESPONSIVE
-========================================================== */
-@media (max-width: 600px) {
-  .action-card {
-    padding: 20px;
+/* ===============================
+      RESPONSIVE
+=============================== */
+@media (max-width: 480px) {
+  .dash-header_dashboard h1 {
+    font-size: 18px;
   }
 
-  .card-icon {
-    width: 68px;
-    height: 68px;
+  .action-card_dashboard {
+    padding: 12px;
+  }
+
+  .card-icon_dashboard img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .tx-item_dashboard {
+    padding: 10px 0;
+  }
+
+  .tx-amount_dashboard {
+    font-size: 14px;
   }
 }
