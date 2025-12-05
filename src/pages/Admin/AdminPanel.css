@@ -386,3 +386,12 @@
     font-size: 0.85rem;
   }
 }
+
+.btn.send-stars {
+  background-color: #ffcc00;
+  color: #000;
+  font-weight: bold;
+}
+.btn.send-stars:hover {
+  background-color: #e6b800;
+}

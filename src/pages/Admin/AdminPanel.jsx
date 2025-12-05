@@ -74,6 +74,29 @@ export default function AdminPanel() {
       console.error("❌ Status update xato:", err);
     }
   };
+  // ---------- STARS YUBORISH FUNKSIYASI ----------
+  const sendStars = async (id) => {
+  try {
+    if (!window.confirm("⭐ Ushbu buyurtmaga stars yuborilsinmi?")) return;
+
+    const res = await fetch(`/api/admin/stars/send/${id}`, {
+      method: "POST",
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      alert("🌟 Stars yuborildi!");
+      fetchTransactions();
+    } else {
+      alert("❌ Xato: " + data.error);
+    }
+
+  } catch (err) {
+    console.error("❌ Stars yuborishda xato:", err);
+    alert("Server xato!");
+  }
+};
 
   const filteredTransactions = transactions.filter((tx) => {
     const s = search.toLowerCase();
@@ -179,32 +202,41 @@ export default function AdminPanel() {
                   <td>{new Date(tx.created_at).toLocaleString()}</td>
 
                   <td>
-                    {/* Admin faqat pending/expiredni o‘zgartira oladi */}
-                    {tx.status !== "stars_sent" && tx.status !== "failed" && (
-                      <div className="action-buttons">
-                        <button
-                          className="btn complete"
-                          onClick={() => updateStatus(tx.id, "completed")}
-                        >
-                          ✅ Complete
-                        </button>
+  <div className="action-buttons">
 
-                        <button
-                          className="btn expire"
-                          onClick={() => updateStatus(tx.id, "expired")}
-                        >
-                          ❌ Expire
-                        </button>
+    {tx.status === "pending" && (
+      <button
+        className="btn send-stars"
+        onClick={() => sendStars(tx.id)}
+      >
+        🌟 Send Stars
+      </button>
+    )}
 
-                        <button
-                          className="btn fail"
-                          onClick={() => updateStatus(tx.id, "failed")}
-                        >
-                          ⚠️ Fail
-                        </button>
-                      </div>
-                    )}
-                  </td>
+    <button
+      className="btn complete"
+      onClick={() => updateStatus(tx.id, "completed")}
+    >
+      ✅ Complete
+    </button>
+
+    <button
+      className="btn expire"
+      onClick={() => updateStatus(tx.id, "expired")}
+    >
+      ❌ Expire
+    </button>
+
+    <button
+      className="btn fail"
+      onClick={() => updateStatus(tx.id, "failed")}
+    >
+      ⚠️ Fail
+    </button>
+
+  </div>
+</td>
+
                 </tr>
               ))}
             </tbody>
